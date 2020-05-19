@@ -28,6 +28,7 @@ parser.add_argument('--gpuId', type=int, default=0, help='gpu id used for traini
 parser.add_argument('--iterationDecreaseLR', type=int, nargs='+', default=[16000, 24000], help='the iteration to decrease learning rate')
 parser.add_argument('--iterationEnd', type=int, default=28000, help='the iteration to end training')
 
+
 # The detail network setting
 opt = parser.parse_args()
 print(opt)
@@ -35,6 +36,9 @@ print(opt)
 # Save all the codes
 os.system('mkdir %s' % opt.experiment )
 os.system('cp *.py %s' % opt.experiment )
+
+# Handle failed gradient computation case
+# torch.autograd.set_detect_anomaly(True)
 
 if torch.cuda.is_available() and opt.noCuda:
     print("WARNING: You have a CUDA device, so you should probably run with --cuda")
@@ -80,7 +84,9 @@ for epoch in range(0, opt.nepoch ):
         # Train network
         optimizer.zero_grad()
 
-        pred = net(imBatch )
+        pred = net(imBatch)
+        # uncomment to use network with batch normalization layer
+#         pred = net.forward_with_normalization(imBatch)
         loss, accuracy = lossLayer(pred, targetBatch )
         loss.backward()
 
