@@ -64,7 +64,7 @@ class CustomLoss(nn.Module):
         cos_theta,phi_theta = input
         target = target.view(-1,1) #size=(B,1)
 
-        # IMPLEMENT loss        
+        # IMPLEMENT loss
         index = cos_theta.data * 0.0 #size=(B,Classnum)
         index.scatter(1,target.data.view(-1,1),1)
         index = index.byte()
@@ -80,8 +80,8 @@ class CustomLoss(nn.Module):
         logpt = logpt.view(-1)
 
         loss = -1 * logpt
-        loss = loss.mean() 
-        
+        loss = loss.mean()
+           
         _, predictedLabel = torch.max(cos_theta.data, 1)
         predictedLabel = predictedLabel.view(-1, 1)
         accuracy = (predictedLabel.eq(target.data).cpu().sum().item() ) / float(target.size(0) )
@@ -191,7 +191,6 @@ class faceNet(nn.Module):
         x = self.fc5(x)
 
         if self.feature:
-            x = self.norm5(x)
             return x
 
         x = self.fc6(x)

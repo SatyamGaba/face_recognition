@@ -129,7 +129,9 @@ for i in range(pairNum ):
 
     img = np.vstack(imglist)
     img = Variable(torch.from_numpy(img).float() ).cuda()
-    output = net(img)
+#     output = net(img)
+    ## uncomment if using with normalization
+    output = net.forward_with_normalization(img)
     f = output.data
     f1,f2 = f[0],f[1]
     cosdistance = f1.dot(f2)/(f1.norm()*f2.norm()+1e-5)

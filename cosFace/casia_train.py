@@ -81,7 +81,7 @@ for epoch in range(0, opt.nepoch ):
         # Train network
         optimizer.zero_grad()
 
-        pred = net(imBatch )
+        pred = net.forward_with_normalization(imBatch )
         loss, accuracy = lossLayer(pred, targetBatch )
         loss.backward()
 

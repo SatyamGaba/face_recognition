@@ -8,12 +8,13 @@ from matlab_cp2tform import get_similarity_transform_for_PIL
 
 class BatchLoader(Dataset ):
     def __init__(self, imageRoot = '../CASIA-WebFace/',
-            alignmentRoot = './data/casia_landmark.txt', cropSize = (96, 112) ):
+            alignmentRoot = './data/casia_landmark.txt', cropSize = (96, 112), shuffle = True ):
         super(BatchLoader, self).__init__()
 
         self.imageRoot = imageRoot
         self.alignmentRoot = alignmentRoot
         self.cropSize = cropSize
+        self.shuffle = shuffle
         refLandmark = [ [30.2946, 51.6963],[65.5318, 51.5014],
                 [48.0252, 71.7366],[33.5493, 92.3655],[62.7299, 92.2041] ]
         self.refLandmark = np.array(refLandmark, dtype = np.float32 ).reshape(5, 2)
@@ -34,7 +35,8 @@ class BatchLoader(Dataset ):
 
         self.count = len(self.imgNames )
         self.perm = list(range(self.count ) )
-        random.shuffle(self.perm )
+        if self.shuffle:
+            random.shuffle(self.perm )
 
     def __len__(self):
         return self.count
