@@ -97,75 +97,75 @@ class faceNet(nn.Module):
         self.feature = feature
 
         self.conv1_1 = nn.Conv2d(3,64,3,2,1) #=>B*64*56*48
-        self.norm1_1 = nn.BatchNorm2d(64)
+#         self.norm1_1 = nn.BatchNorm2d(64)
         self.relu1_1 = nn.PReLU(64)
         self.conv1_2 = nn.Conv2d(64,64,3,1,1)
-        self.norm1_2 = nn.BatchNorm2d(64)
+#         self.norm1_2 = nn.BatchNorm2d(64)
         self.relu1_2 = nn.PReLU(64)
         self.conv1_3 = nn.Conv2d(64,64,3,1,1)
-        self.norm1_3 = nn.BatchNorm2d(64)
+#         self.norm1_3 = nn.BatchNorm2d(64)
         self.relu1_3 = nn.PReLU(64)
 
         self.conv2_1 = nn.Conv2d(64,128,3,2,1) #=>B*128*28*24
-        self.norm2_1 = nn.BatchNorm2d(128)
+#         self.norm2_1 = nn.BatchNorm2d(128)
         self.relu2_1 = nn.PReLU(128)
         self.conv2_2 = nn.Conv2d(128,128,3,1,1)
-        self.norm2_2 = nn.BatchNorm2d(128)
+#         self.norm2_2 = nn.BatchNorm2d(128)
         self.relu2_2 = nn.PReLU(128)
         self.conv2_3 = nn.Conv2d(128,128,3,1,1)
-        self.norm2_3 = nn.BatchNorm2d(128)
+#         self.norm2_3 = nn.BatchNorm2d(128)
         self.relu2_3 = nn.PReLU(128)
 
         self.conv2_4 = nn.Conv2d(128,128,3,1,1) #=>B*128*28*24
-        self.norm2_4 = nn.BatchNorm2d(128)        
+#         self.norm2_4 = nn.BatchNorm2d(128)        
         self.relu2_4 = nn.PReLU(128)
         self.conv2_5 = nn.Conv2d(128,128,3,1,1)
-        self.norm2_5 = nn.BatchNorm2d(128)
+#         self.norm2_5 = nn.BatchNorm2d(128)
         self.relu2_5 = nn.PReLU(128)
 
         self.conv3_1 = nn.Conv2d(128,256,3,2,1) #=>B*256*14*12
-        self.norm3_1 = nn.BatchNorm2d(256)
+#         self.norm3_1 = nn.BatchNorm2d(256)
         self.relu3_1 = nn.PReLU(256)
         self.conv3_2 = nn.Conv2d(256,256,3,1,1)
-        self.norm3_2 = nn.BatchNorm2d(256)
+#         self.norm3_2 = nn.BatchNorm2d(256)
         self.relu3_2 = nn.PReLU(256)
         self.conv3_3 = nn.Conv2d(256,256,3,1,1)
-        self.norm3_3 = nn.BatchNorm2d(256)
+#         self.norm3_3 = nn.BatchNorm2d(256)
         self.relu3_3 = nn.PReLU(256)
 
         self.conv3_4 = nn.Conv2d(256,256,3,1,1) #=>B*256*14*12
-        self.norm3_4 = nn.BatchNorm2d(256)
+#         self.norm3_4 = nn.BatchNorm2d(256)
         self.relu3_4 = nn.PReLU(256)
         self.conv3_5 = nn.Conv2d(256,256,3,1,1)
-        self.norm3_5 = nn.BatchNorm2d(256)
+#         self.norm3_5 = nn.BatchNorm2d(256)
         self.relu3_5 = nn.PReLU(256)
 
         self.conv3_6 = nn.Conv2d(256,256,3,1,1) #=>B*256*14*12
-        self.norm3_6 = nn.BatchNorm2d(256)
+#         self.norm3_6 = nn.BatchNorm2d(256)
         self.relu3_6 = nn.PReLU(256)
         self.conv3_7 = nn.Conv2d(256,256,3,1,1)
-        self.norm3_7 = nn.BatchNorm2d(256)
+#         self.norm3_7 = nn.BatchNorm2d(256)
         self.relu3_7 = nn.PReLU(256)
 
         self.conv3_8 = nn.Conv2d(256,256,3,1,1) #=>B*256*14*12
-        self.norm3_8 = nn.BatchNorm2d(256)
+#         self.norm3_8 = nn.BatchNorm2d(256)
         self.relu3_8 = nn.PReLU(256)
         self.conv3_9 = nn.Conv2d(256,256,3,1,1)
-        self.norm3_9 = nn.BatchNorm2d(256)
+#         self.norm3_9 = nn.BatchNorm2d(256)
         self.relu3_9 = nn.PReLU(256)
 
         self.conv4_1 = nn.Conv2d(256,512,3,2,1) #=>B*512*7*6
-        self.norm4_1 = nn.BatchNorm2d(512)
+#         self.norm4_1 = nn.BatchNorm2d(512)
         self.relu4_1 = nn.PReLU(512)
         self.conv4_2 = nn.Conv2d(512,512,3,1,1)
-        self.norm4_2 = nn.BatchNorm2d(512)
+#         self.norm4_2 = nn.BatchNorm2d(512)
         self.relu4_2 = nn.PReLU(512)
         self.conv4_3 = nn.Conv2d(512,512,3,1,1)
-        self.norm4_3 = nn.BatchNorm2d(512)
+#         self.norm4_3 = nn.BatchNorm2d(512)
         self.relu4_3 = nn.PReLU(512)
 
         self.fc5 = nn.Linear(512*7*6,512)
-        self.norm5 = nn.BatchNorm1d(512, eps=0.001, momentum=0.1, affine=True)
+#         self.norm5 = nn.BatchNorm1d(512, eps=0.001, momentum=0.1, affine=True)
         self.fc6 = CustomLinear(in_features = 512,
                 out_features = self.classnum, m=m)
 

@@ -26,14 +26,18 @@ def alignment(src_img, src_pts):
     return face_img
 
 def cropping(src_img ):
-    # IMPLEMENT cropping the center of image
+    # cropping the center of image
+    w, h = src_img.size 
+      
+    # Setting the points for cropped image 
+    left = (w-96)/2
+    top = (h-112)/2
+    right = (w+96)/2
+    bottom = (h+112)/2
 
-
-
-
-
-
-
+    # Cropped image of above dimension 
+    src_img = src_img.crop((left, top, right, bottom)) 
+    src_img = np.asarray(src_img )[:,:,::-1]
     return src_img
 
 def KFold(n=6000, n_folds=10, shuffle=False):
@@ -129,14 +133,13 @@ for i in range(pairNum ):
 
     img = np.vstack(imglist)
     img = Variable(torch.from_numpy(img).float() ).cuda()
-#     output = net(img)
+    output = net(img)
     ## uncomment if using with normalization
-    output = net.forward_with_normalization(img)
+#     output = net.forward_with_normalization(img)
     f = output.data
     f1,f2 = f[0],f[1]
     cosdistance = f1.dot(f2)/(f1.norm()*f2.norm()+1e-5)
     predicts.append('{}\t{}\t{}\t{}\n'.format(name1,name2,cosdistance,sameflag))
-
 
 accuracy = []
 thd = []
